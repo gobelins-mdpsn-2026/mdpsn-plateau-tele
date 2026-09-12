@@ -1,0 +1,10 @@
+# Loaded automatically by `docker compose` on your machine, ignored by Coolify.
+services:
+  app:
+    ports:
+      - "3000:3000"
+    environment:
+      - TMDB_API_KEY=${TMDB_API_KEY}
+  db:
+    ports:
+      - "5432:5432"

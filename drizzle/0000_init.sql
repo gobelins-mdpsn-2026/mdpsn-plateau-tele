@@ -1,0 +1,20 @@
+CREATE TABLE "watch_items" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"tmdb_id" integer NOT NULL,
+	"media_type" text NOT NULL,
+	"title" text NOT NULL,
+	"original_title" text,
+	"original_language" text DEFAULT 'en' NOT NULL,
+	"poster_path" text,
+	"year" text,
+	"note" text DEFAULT '' NOT NULL,
+	"added_by" text NOT NULL,
+	"director" text,
+	"country" text,
+	"duration" text,
+	"position" double precision NOT NULL,
+	"watched" boolean DEFAULT false NOT NULL,
+	"watched_at" timestamp with time zone,
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
+);

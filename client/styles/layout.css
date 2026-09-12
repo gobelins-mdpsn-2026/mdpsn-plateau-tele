@@ -1,0 +1,135 @@
+@layer layout {
+  /* ---- Detail page header (sticky, used on non-home pages) ---- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: var(--space-md);
+    padding-top: calc(env(safe-area-inset-top, 0px) + var(--space-md));
+    background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  header h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  header h1 a {
+    color: inherit;
+  }
+
+  /* ---- Header nav (detail / add-modal pages) ---- */
+  header nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* ---- Chat link ---- */
+  .chat-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: var(--color-text);
+    transition: background 0.15s;
+  }
+
+  .chat-link:active {
+    background: color-mix(in srgb, var(--color-text) 10%, transparent);
+  }
+
+  /* Chat link floating on home page */
+  .chat-link--home {
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + var(--space-sm));
+    right: var(--space-md);
+    z-index: 10;
+    background: color-mix(in srgb, var(--color-bg) 60%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .chat-link--home:active {
+    background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  }
+
+  /* ---- Home hero ---- */
+  .hero {
+    position: sticky;
+    top: 0;
+    height: 40vh;
+    z-index: -1;
+  }
+
+  .hero__logo {
+    position: relative;
+    top: -20px;
+    width: 100%;
+    height: calc(100% + 20px);
+    object-fit: cover;
+    object-position: center 30%;
+    will-change: transform;
+  }
+
+  /* ---- Main ---- */
+  main {
+    position: relative;
+    display: grid;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + var(--space-xl));
+    max-width: 600px;
+    margin: 0 auto;
+    z-index: 1;
+
+    /* Full-width background to hide hero on sides */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      top: -20px;
+      left: 50%;
+      width: calc(100vw + 2px);
+      transform: translateX(-50%);
+      background: var(--color-bg);
+      z-index: -1;
+    }
+  }
+
+  @keyframes hero-parallax {
+    from { translate: 0 0; }
+    to   { translate: 0 -6vh; }
+  }
+
+  .hero__logo {
+    animation: hero-parallax linear both;
+    animation-timeline: scroll();
+    animation-range: 0px 40vh;
+  }
+
+  @keyframes hero-shadow {
+    from { box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.25); }
+    to   { box-shadow: 0 -15px 60px 55px rgba(0, 0, 0, 0.85); }
+  }
+
+  .hero + main::before {
+    animation: hero-shadow linear both;
+    animation-timeline: scroll();
+    animation-range: 0px 40vh;
+  }
+
+  main.layout-wide {
+    max-width: none;
+
+    &::before {
+      display: none;
+    }
+  }
+}

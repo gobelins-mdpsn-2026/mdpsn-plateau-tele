@@ -1,0 +1,35 @@
+# Deployed as-is by Coolify (Docker Compose build pack).
+# Host ports for local use live in docker-compose.override.yml.
+services:
+  app:
+    build: .
+    expose:
+      - "3000"
+    environment:
+      # Resolved by Coolify from the project's shared variables.
+      # docker-compose.override.yml replaces this with your local key.
+      - TMDB_API_KEY={{project.TMDB_API_KEY}}
+      - DATABASE_URL=postgres://plateau:plateau@db:5432/plateau
+      - LOCALE=${LOCALE:-fr}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:17-alpine
+    environment:
+      - POSTGRES_USER=plateau
+      - POSTGRES_PASSWORD=plateau
+      - POSTGRES_DB=plateau
+    volumes:
+      - plateau-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U plateau -d plateau"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  plateau-pg:

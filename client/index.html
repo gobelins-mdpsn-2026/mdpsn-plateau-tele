@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="view-transition" content="same-origin" />
+    <title>plateau-télé</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="importmap">{"imports":{"sortablejs":"/vendor/sortable.esm.js"}}</script>
+    <script type="module" src="/main.js"></script>
+  </head>
+  <body>
+    <div class="hero">
+      <img src="/plateau-tele.png" alt="plateau-télé" class="hero__logo" />
+    </div>
+
+    <main>
+      <div class="home-header">
+        <a class="home-header__watched-link" href="/watched" aria-label="Séries et films regardés">
+          <svg viewBox="0 0 28 20" width="26" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6">
+            <rect x="1" y="1" width="26" height="18" rx="3" />
+            <path d="M5.5 10C5.5 10 9 5.5 14 5.5S22.5 10 22.5 10 19 14.5 14 14.5 5.5 10 5.5 10Z" />
+            <circle cx="14" cy="10" r="2.5" />
+            <circle cx="14" cy="10" r="1" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+        <search-bar></search-bar>
+      </div>
+      <watch-list></watch-list>
+    </main>
+
+    <a href="/chat" class="chat-link chat-link--home" aria-label="Chat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </a>
+
+    <!-- Templates -->
+
+    <template id="search-result-tpl">
+      <li class="search-result" role="option">
+        <a class="search-result__link" href="">
+          <img class="search-result__poster" alt="" loading="lazy" />
+          <div class="search-result__info">
+            <span class="search-result__title"></span>
+            <span class="search-result__subtitle"></span>
+            <span class="search-result__meta"></span>
+          </div>
+        </a>
+      </li>
+    </template>
+
+    <template id="watch-item-tpl">
+      <li class="watch-item">
+        <a class="watch-item__link" href="">
+          <img class="watch-item__poster" alt="" loading="lazy" crossorigin="anonymous" />
+          <div class="watch-item__body">
+            <strong class="watch-item__title"></strong>
+            <span class="watch-item__subtitle"></span>
+            <span class="watch-item__meta"></span>
+            <span class="watch-item__watched-at"></span>
+            <span class="watch-item__director"></span>
+            <p class="watch-item__note"></p>
+          </div>
+        </a>
+        <span class="watch-item__added-by"></span>
+        <span class="watch-item__handle" aria-hidden="true"></span>
+      </li>
+    </template>
+  </body>
+</html>
