@@ -6,9 +6,9 @@ services:
     expose:
       - "3000"
     environment:
-      # Resolved by Coolify from the project's shared variables.
+      # Resolved by Coolify from the team's shared variables.
       # docker-compose.override.yml replaces this with your local key.
-      - TMDB_API_KEY={{project.TMDB_API_KEY}}
+      - TMDB_API_KEY={{team.TMDB_API_KEY}}
       - DATABASE_URL=postgres://plateau:plateau@db:5432/plateau
       - LOCALE=${LOCALE:-fr}
     depends_on:
