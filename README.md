@@ -48,3 +48,5 @@ et modifier la liste. À éviter dans la vraie vie.
 ## Licence
 
 Domaine public ([Unlicense](https://unlicense.org)).
+
+<!-- preview test -->
