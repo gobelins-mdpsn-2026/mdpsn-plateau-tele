@@ -9,7 +9,8 @@ services:
       # Resolved by Coolify from the team's shared variables.
       # docker-compose.override.yml replaces this with your local key.
       - TMDB_API_KEY={{team.TMDB_API_KEY}}
-      - DATABASE_URL=postgres://plateau:plateau@db:5432/plateau
+      # SERVICE_NAME_DB is set by Coolify; in PR previews the service is renamed db-pr-N.
+      - DATABASE_URL=postgres://plateau:plateau@${SERVICE_NAME_DB:-db}:5432/plateau
       - LOCALE=${LOCALE:-fr}
     depends_on:
       db:
